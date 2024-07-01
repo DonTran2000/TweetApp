@@ -131,9 +131,8 @@ button img {
 	background-color: #fff;
 }
 
-.login-form button,
-.regist-form button {
-	width: 48%;
+.login-form button {
+	width: 30%;
 	padding: 0.5em;
 	color: white;
 	background-color: #4CAF50;
@@ -153,12 +152,22 @@ button img {
 	opacity: 0.8;
 }
 
-.error {
-	color: red;
-	font-size: 14px;
+/* Registration confirmation page */
+
+.password-fields {
+	display: none;
 }
 
-/* Registration confirmation page */
+.regist-form button {
+	width: 50%;
+	padding: 0.5em;
+	color: white;
+	background-color: #4CAF50;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
 .regist-form table,
 .success-message table {
 	width: 100%;

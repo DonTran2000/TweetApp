@@ -8,16 +8,20 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="./css/styles.css">
 	<title>Login Page</title>
-<script>
-	function myFunction() {
-		var x = document.getElementById("pass");
-		if (x.type === "password") {
-			x.type = "text";
-		} else {
-			x.type = "password";
-		}
-	}
-</script>
+	<script>
+        function togglePasswordVisibility() {
+            var passField = document.getElementById("pass");
+            var passToggleBtn = document.getElementById("passToggleBtn");
+
+            if (passField.type === "password") {
+                passField.type = "text";
+                passToggleBtn.textContent = "Hide Password";
+            } else {
+                passField.type = "password";
+                passToggleBtn.textContent = "Show Password";
+            }
+        }
+    </script>
 </head>
 <body>
 	<div class="container">
@@ -35,11 +39,14 @@
 				<label for="id">学籍番号</label> 
 				<f:input type="text" name="id" path="id"/>
 				<br />
+				
+				<!-- Password fields -->
 				<label for="pass">パスワード</label> 
 				<f:input type="password" id="pass" path="pass"/>
 				<br />
-				<label for="showPass">Show Password</label>
-				<input type="checkbox" id="showPass" onclick="myFunction()">
+				
+				<!-- Button to toggle password visibility -->
+		        <button type="button" id="passToggleBtn" onclick="togglePasswordVisibility()">Show Password</button>
 				<br />
 				<br />
 				<button type="submit">ログイン</button>

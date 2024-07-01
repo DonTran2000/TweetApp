@@ -163,6 +163,9 @@ public class Dao {
 			manager.getTransaction().commit();
 
 			closeManager();
+
+			return true;
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			closeManager();

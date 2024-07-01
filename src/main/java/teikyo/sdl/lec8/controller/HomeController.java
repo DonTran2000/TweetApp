@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import teikyo.sdl.lec8.dao.Dao;
 import teikyo.sdl.lec8.entity.Department;
@@ -137,16 +138,36 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/check", method = RequestMethod.POST)
-	public String checkRegistration(@Validated @ModelAttribute("RegistForm") RegistrationForm form,
+	public String checkRegistration(
+			@Validated @ModelAttribute("RegistForm") RegistrationForm form,
 			BindingResult result,
-			Model model) {
+			Model model,
+			RedirectAttributes redirectAttributes) {
 		Dao dao = new Dao();
 
 		if (result.hasErrors()) {
-			System.out.println("vao");
 			model.addAttribute("deptItems", dao.getDepartmentList());
 			return "regist_form";
 		}
+
+		String stid = form.getId();
+
+		Student stExist = dao.getStudentById(stid);
+
+		//データベースの中には、存在している
+		if (stExist != null && stid.equals(stExist.getStid())) {
+			String stExist_mess = stid + " 学籍番号は存在している！";
+			redirectAttributes.addFlashAttribute("stExist_mess", stExist_mess);
+			return "redirect:/registForm";
+		}
+
+		// パスワードと確認パスワードは一致しない場合
+		if (!form.getPass().equals(form.getConfPass())) {
+			redirectAttributes.addFlashAttribute("mess_pass", "パスワードと確認パスワードは一致しない！");
+			return "redirect:/registForm";
+		}
+
+		// 所属学科は画面に表示する
 		Department dept = dao.getDepartment(form.getDept());
 		String deptname = dept.getDeptname();
 		form.setDeptName(deptname);
@@ -156,34 +177,32 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
-	public String submitRegistration(@ModelAttribute("RegistForm") RegistrationForm form, Model model) {
+	public String submitRegistration(
+			@ModelAttribute("RegistForm") RegistrationForm form,
+			Model model,
+			RedirectAttributes redirectAttributes) {
 		Dao dao = new Dao();
 
 		Student newSt = new Student();
 		newSt.setStid(form.getId());
 		newSt.setName(form.getName());
-		if (form.getPass().equals(form.getConfPass())) {
-			newSt.setPassword(form.getPass());
-		} else {
-			model.addAttribute("deptItems", dao.getDepartmentList());
-			model.addAttribute("mess_pass", "パスワードと確認パスワードは一致しない！");
-			return "regist_form";
-		}
+		newSt.setPassword(form.getPass());
+
 		Department dept = new Department(form.getDept(), "");
 		newSt.setDepartment(dept);
 
 		boolean result = dao.insertStudent(newSt);
 
-		if (result == false) {
+		if (result) {
 			// get deptname, form set deptname and output screen
 			Department d = dao.getDepartment(form.getDept());
 			String deptname = d.getDeptname();
 			form.setDeptName(deptname);
-			
 			model.addAttribute("RegistForm", form);
 			return "regist_success";
 		} else {
-			return "regist_form";
+			redirectAttributes.addFlashAttribute("mess_error", "学生の登録に失敗しました！");
+			return "redirect:/registForm";
 		}
 	}
 
