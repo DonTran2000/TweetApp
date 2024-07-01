@@ -12,6 +12,7 @@ Mavenサポートを持つIDE（IntelliJ IDEA、Eclipseなど）
 リポジトリをクローンする:
 
 git clone https://github.com/DonTran2000/TweetApp.git
+
 cd YourRepository
 プロジェクトをビルドする:
 
