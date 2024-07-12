@@ -26,6 +26,8 @@ public class RegistrationForm {
 
 	private String deptName; // New field for department name
 
+	private String email;
+
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -72,6 +74,14 @@ public class RegistrationForm {
 
 	public void setDeptName(String deptName) {
 		this.deptName = deptName;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getEmail() {
+		return email;
 	}
 
 }

@@ -7,6 +7,7 @@
 		<class>teikyo.sdl.lec8.entity.Department</class>
 		<class>teikyo.sdl.lec8.entity.Student</class>
 		<class>teikyo.sdl.lec8.entity.Tweet</class>
+		<class>teikyo.sdl.lec8.entity.VerificationCode</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
 				value="com.mysql.jdbc.Driver" />
@@ -17,7 +18,6 @@
 				value="jdbc:mysql://localhost/sdllec8" />
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.MySQLInnoDBDialect" />
-			<!-- <property name="hibernate.show_sql" value="true" /> -->
 		</properties>
 	</persistence-unit>
 </persistence>

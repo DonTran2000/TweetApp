@@ -117,7 +117,6 @@ public class HomeController {
 			System.out.println(r);
 
 			if (r) {
-				System.out.println("vao");
 				return "redirect:./";
 			} else {
 				return "tweet_form";
@@ -186,6 +185,7 @@ public class HomeController {
 		Student newSt = new Student();
 		newSt.setStid(form.getId());
 		newSt.setName(form.getName());
+		newSt.setEmail(form.getEmail());
 		newSt.setPassword(form.getPass());
 
 		Department dept = new Department(form.getDept(), "");

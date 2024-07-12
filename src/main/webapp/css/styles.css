@@ -98,13 +98,17 @@ button img {
 }
 
 .login-form h2,
-.regist-form h2 {
+.regist-form h2,
+.forgotpassword-form h2,
+.reset-pass-form h2 {
 	margin-bottom: 1em;
 	color: #333;
 }
 
 .login-form label,
-.regist-form label {
+.regist-form label,
+.forgotpassword-form label,
+.resetpass-form label {
 	display: block;
 	margin: 0.5em 0 0.2em;
 	color: #333;
@@ -112,7 +116,8 @@ button img {
 
 .login-form input,
 .regist-form input,
-.regist-form select {
+.forgotpassword-form input,
+.resetpass-form input {
 	width: calc(50% - 12px);
 	padding: 5px;
 	margin-bottom: 1em;
@@ -122,7 +127,8 @@ button img {
 	background-color: #fff;
 }
 
-.regist-form select {
+.regist-form select,
+.forgotpassword-form select {
 	width: calc(50% - 10px);
 	padding: 6px;
 	border: 1px solid #ccc;
@@ -158,7 +164,9 @@ button img {
 	display: none;
 }
 
-.regist-form button {
+.regist-form button,
+.forgotpassword-form button,
+.resetpass-form button {
 	width: 50%;
 	padding: 0.5em;
 	color: white;
@@ -166,38 +174,9 @@ button img {
 	border: none;
 	border-radius: 3px;
 	cursor: pointer;
+	margin-top: 10px;
 }
 
-.regist-form table,
-.success-message table {
-	width: 100%;
-	margin-bottom: 1em;
-	border-collapse: collapse;
-}
-
-.regist-form th,
-.regist-form td,
-.success-message th,
-.success-message td {
-	padding: 0.5em;
-	border: 1px solid #ccc;
-	text-align: left;
-}
-
-.regist-form th,
-.success-message th {
-	background-color: #f0f0f0;
-}
-
-.regist-form .error-messages ul {
-	list-style-type: none;
-	padding: 0;
-	color: red;
-}
-
-.regist-form .error-messages li {
-	margin: 0.5em 0;
-}
 
 /* Align buttons side by side */
 .regist-form .button-group {

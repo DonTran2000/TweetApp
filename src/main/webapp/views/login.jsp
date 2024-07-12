@@ -32,6 +32,8 @@
 			<button onclick="location.href='./'">トップ</button>
 		</div>
 		
+		<a href="./forgotPassword">Forgot Password</a>
+		
 		<div class="login-form">
 			<h2>ログイン</h2>
 			<p> ${ message }</p>

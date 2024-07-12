@@ -9,13 +9,14 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 /**
  * The persistent class for the departments database table.
  * 
  */
 @Entity
-@Table(name = "departments")
-@NamedQuery(name = "Department.findAll", query = "SELECT d FROM Department d")
+@Table(name="departments")
+@NamedQuery(name="Department.findAll", query="SELECT d FROM Department d")
 public class Department implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -25,7 +26,7 @@ public class Department implements Serializable {
 	private String deptname;
 
 	//bi-directional many-to-one association to Student
-	@OneToMany(mappedBy = "department")
+	@OneToMany(mappedBy="department")
 	private List<Student> students;
 
 	public Department() {

@@ -79,16 +79,11 @@
 				
 				 <!-- Button to toggle password visibility -->
 		        <button type="button" id="passToggleBtn" onclick="togglePasswordVisibility()">Show Password</button>
-		        <br />
-		        <br />
 				
 				<button type="submit">送信</button>
 			</f:form>
 			
 		</div>
 	</div>
-	
-	
-	
 </body>
 </html>

@@ -11,18 +11,21 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 /**
  * The persistent class for the students database table.
  * 
  */
 @Entity
-@Table(name = "students")
-@NamedQuery(name = "Student.findAll", query = "SELECT s FROM Student s")
+@Table(name="students")
+@NamedQuery(name="Student.findAll", query="SELECT s FROM Student s")
 public class Student implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	private String stid;
+
+	private String email;
 
 	private String name;
 
@@ -30,19 +33,14 @@ public class Student implements Serializable {
 
 	//bi-directional many-to-one association to Department
 	@ManyToOne
-	@JoinColumn(name = "deptcode")
+	@JoinColumn(name="deptcode")
 	private Department department;
 
 	//bi-directional many-to-one association to Tweet
-	@OneToMany(mappedBy = "student")
+	@OneToMany(mappedBy="student")
 	private List<Tweet> tweets;
 
 	public Student() {
-	}
-
-	public Student(String stid, List<Tweet> tweets) {
-		this.stid = stid;
-		this.tweets = tweets;
 	}
 
 	public String getStid() {
@@ -51,6 +49,14 @@ public class Student implements Serializable {
 
 	public void setStid(String stid) {
 		this.stid = stid;
+	}
+
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getName() {
@@ -98,5 +104,12 @@ public class Student implements Serializable {
 
 		return tweet;
 	}
+
+	@Override
+	public String toString() {
+		return "Student [stid=" + stid + ", email=" + email + ", name=" + name + ", password=" + password
+				+ ", department=" + department + ", tweets=" + tweets + "]";
+	}
+	
 
 }
