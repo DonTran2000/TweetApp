@@ -25,7 +25,8 @@ public class RegistrationForm {
 	private String name;
 
 	private String deptName; // New field for department name
-
+	
+	@NotEmpty(message = "メールは必ず入力してください")
 	private String email;
 
 	public void setId(String id) {

@@ -20,7 +20,7 @@
         <div class="success-message">
             <h2>登録が成功しました！</h2>
             <p>以下の情報で登録されました。</p>
-            <table>
+            <table class="table">
                 <tr>
                     <th>学籍番号</th>
                     <td>${RegistForm.id}</td>

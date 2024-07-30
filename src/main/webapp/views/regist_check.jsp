@@ -32,7 +32,7 @@
                 </c:when>
                 <c:otherwise>
                     <p style="color: blue;">以下の情報を確認してください。</p>
-                    <table>
+                    <table class="table">
                         <tr>
                             <th>学籍番号</th>
                             <td>${RegistForm.id}</td>

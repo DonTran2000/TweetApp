@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceUnit;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import teikyo.sdl.lec8.entity.Department;
 import teikyo.sdl.lec8.entity.Student;
@@ -165,6 +166,7 @@ public class Dao {
 		return false;
 	}
 
+	@Transactional
 	public boolean insertStudent(Student s) {
 		try {
 
@@ -338,6 +340,25 @@ public class Dao {
 			closeManager();
 			return false;
 		}
+	}
+
+	public List<Student> getStudentByDeptcode(Department department) {
+		try {
+			createManager();
+			String jpql = "SELECT s FROM Student s WHERE s.department = :department";
+
+			TypedQuery<Student> query = manager.createQuery(jpql, Student.class);
+			query.setParameter("department", department);
+			List<Student> students = query.getResultList(); // なぜListを使うかというとNoResultExceptionを避けるために
+			closeManager();
+
+			return students;
+		} catch (Exception e) {
+			e.printStackTrace();
+			closeManager();
+		}
+		return null;
+
 	}
 
 	public Student getStudentByEmail(String email) {

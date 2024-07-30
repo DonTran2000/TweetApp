@@ -148,18 +148,24 @@ public class HomeController {
 			model.addAttribute("deptItems", dao.getDepartmentList());
 			return "regist_form";
 		}
-
 		String stid = form.getId();
 
 		Student stExist = dao.getStudentById(stid);
 
-		//データベースの中には、存在している
-		if (stExist != null && stid.equals(stExist.getStid())) {
+		//データベースから学科を取得する
+		Department departExist = dao.getDepartment(form.getDept());
+
+		//データベースに学科から学籍番号が存在するかどうか
+		// なぜListを使うかというとNoResultExceptionを避けるために
+		List<Student> studentsInDept = dao.getStudentByDeptcode(departExist);
+
+		// 学科に学生が存在しているか確認する
+		if (!studentsInDept.isEmpty()) {
+			stExist = studentsInDept.get(0);
 			String stExist_mess = stid + " 学籍番号は存在している！";
 			redirectAttributes.addFlashAttribute("stExist_mess", stExist_mess);
 			return "redirect:/registForm";
 		}
-
 		// パスワードと確認パスワードは一致しない場合
 		if (!form.getPass().equals(form.getConfPass())) {
 			redirectAttributes.addFlashAttribute("mess_pass", "パスワードと確認パスワードは一致しない！");

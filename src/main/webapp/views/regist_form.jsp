@@ -62,6 +62,9 @@
 				<label for="name">名前</label>
 				<f:input type="text" size="20" path="name" />
 				<br />
+				<label for="name">メール</label>
+				<f:input type="text" size="20" path="email" />
+				<br />
 				<label for="dept">所属学科</label>
 				<f:select path="dept">
                     <option value="" label="選択してください" disabled="disabled" selected="selected" style="text-align: center">
